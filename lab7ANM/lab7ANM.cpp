@@ -219,7 +219,7 @@ std::map<int, ResultEntry*> finiteStateMachine(const std::vector<int>& vector1, 
             continue;
         }
 
-        if (tempValue != NULL and tempValue == v1[p].second)
+        if (tempValue != NULL and tempValue == v1[p].second and state == Proceed)
         {
             auto entry = result[tempValue];
 
@@ -233,7 +233,7 @@ std::map<int, ResultEntry*> finiteStateMachine(const std::vector<int>& vector1, 
             entry->b.push_back(v2[q].first);
         }
 
-        if (v1[p].second < v2[q].second and state == Proceed)
+        if (v1[p].second < v2[q].second)
         {
             p++;
             state = NotFound;
@@ -262,7 +262,7 @@ std::map<int, ResultEntry*> finiteStateMachine(const std::vector<int>& vector1, 
 
     while (q < vector2.size())
     {
-        if (tempValue != NULL and tempValue == v1[p].second)
+        if (tempValue != NULL and tempValue == v2[q].second)
         {
             auto entry = result[tempValue];
 
@@ -288,10 +288,11 @@ int main()
     std::cout << "Linear efficiency: " << iterationsLinear << std::endl;
     std::cout << "Binary efficiency: " << iterationsBinary << std::endl;
 
-    std::vector<int> a = { 1, 1, 3, 3 };
-    std::vector<int> b = { 3, 3, 1, 1 };
+    std::vector<int> a = { 1, 11, 12, 15, 12, 11 };
+    std::vector<int> b = { 11, 11, 3, 90, 12, 57, 90, 12, 1, 12 };
 
-
+    // time complexity - O(n*logn)
+    // ! HASH functions solution is more efficient!!!
     auto result = finiteStateMachine(a, b);
 
     std::cout << result;
