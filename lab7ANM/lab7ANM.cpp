@@ -300,5 +300,7 @@ int main()
     for (std::pair<int, ResultEntry*> m : result)
     {
         delete m.second;
+
+        //1
     }
 }
